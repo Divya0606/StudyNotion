@@ -14,7 +14,7 @@ const {
   getInstructorCourses,
   deleteCourse,
   updateCourseProgress,
-} = require("../controllers/Course")
+} = require("../controllers/course")
 
 
 // Categories Controllers Import
