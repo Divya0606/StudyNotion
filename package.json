@@ -40,7 +40,7 @@
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\""
   },
   "engines": {
-    "node": "20.x"
+    "node": "26.x"
   },
   "eslintConfig": {
     "extends": [
