@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { apiConnector } from "../services/apiconnector"
 import { categories } from "../services/apis"
 import { getCatalogaPageData } from "../services/operations/pageAndComponentData"
-import Course_Card from "../components/core/Catalog/Course_Card"
+import CourseCard from "../components/core/Catalog/Course_Card"
 import CourseSlider from "../components/core/Catalog/CourseSlider"
 
 const Catalog = () => {
@@ -110,7 +110,7 @@ const Catalog = () => {
         <div className="mb-4 mt-12 text-xl font-semibold">Frequently Bought</div>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {catalogPageData?.data?.mostSellingCourses?.slice(0, 4).map((course, index) => (
-            <Course_Card course={course} key={index} Height={"h-[300px]"} />
+            <CourseCard course={course} key={index} Height={"h-[300px]"} />
           ))}
         </div>
       </div>
