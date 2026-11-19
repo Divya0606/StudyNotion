@@ -22,19 +22,27 @@ database.connect();
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
+const normalizeOrigin = (value) =>
+	(value || "").trim().replace(/\/$/, "")
+
 const allowedOrigins = [
 	"http://localhost:3000",
-	process.env.FRONTEND_URL,
+	"https://study-notion-techskill.vercel.app",
+	normalizeOrigin(process.env.FRONTEND_URL),
+	...(process.env.FRONTEND_URLS || "")
+		.split(",")
+		.map(normalizeOrigin),
 ].filter(Boolean)
 
 app.use(
 	cors({
 		origin: function (origin, callback) {
 			// allow non-browser / same-origin tools with no Origin header
-			if (!origin || allowedOrigins.includes(origin)) {
+			if (!origin || allowedOrigins.includes(normalizeOrigin(origin))) {
 				return callback(null, true)
 			}
-			return callback(new Error("Not allowed by CORS: " + origin))
+			// reject without throwing (throwing becomes HTTP 500 / Network Error)
+			return callback(null, false)
 		},
 		credentials: true,
 	})
