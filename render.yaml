@@ -1,11 +1,7 @@
 services:
   - type: web
     name: StudyNotion
-    runtime: node
+    runtime: docker
     plan: free
-    rootDir: server
-    buildCommand: npm install
-    startCommand: npm start
-    envVars:
-      - key: NODE_VERSION
-        value: 20
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
